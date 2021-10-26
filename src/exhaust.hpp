@@ -13,7 +13,7 @@ vector<vector<T>> exhaust(T mn, T mx, int n, bool unique = false) {
                 res.push_back(cur);
                 return;
             }
-            rep(i, mn, mx+1) {
+            for (T i = mn; i <= mx; ++i) {
                 if (unique && used.count(i)) continue;
                 cur.push_back(i);
                 if (unique) used.insert(i);
