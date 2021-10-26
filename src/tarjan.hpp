@@ -1,7 +1,5 @@
-#pragma once
-#include "general.h"
-
 class SCC {
+    public:
     SCC(int n, vector<vector<int>> gr)
             : n(n), gr(gr), count(0), cid(0) {
         id.resize(n);
@@ -17,17 +15,17 @@ class SCC {
         stk.push(u);
         dfn[u] = low[u] = count++;
         in_stk[u] = true;
-        for (const int v : adj[u]) {
+        for (const int v : gr[u]) {
             if (in_stk[v]) low[u] = min(low[u], dfn[v]);
             else if (dfn[v] < 0) low[u] = min(low[u], dfs(v)); 
         }
         if (low[u] == dfn[u]) {
-            while (!s.top() != u) {
-                int v = s.top(); s.pop();
+            while (stk.top() != u) {
+                int v = stk.top(); stk.pop();
                 id[v] = cid;
                 in_stk[v] = false;
             }
-            id[v] = cid++;
+            id[u] = cid++;
             in_stk[u] = false;
             stk.pop();
         }
