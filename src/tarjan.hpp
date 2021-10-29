@@ -1,3 +1,6 @@
+#pragma once
+#include "general.hpp"
+
 class SCC {
     public:
     SCC(int n, vector<vector<int>> gr)
@@ -6,9 +9,6 @@ class SCC {
         low.resize(n);
         dfn.assign(n, -1);
         in_stk.assign(n, false);
-        for (int i = 0; i < n; ++i) {
-            if (dfn[i] < 0) dfs(i);
-        }
     }
 
     int dfs(int u) {
@@ -30,6 +30,13 @@ class SCC {
             stk.pop();
         }
         return low[u];
+    }
+
+    void run() {
+        for (int i = 0; i < n; ++i) {
+            if (dfn[i] < 0) dfs(i);
+        }
+        return;
     }
 
     int count;
