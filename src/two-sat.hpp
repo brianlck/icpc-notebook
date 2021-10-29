@@ -24,7 +24,6 @@ struct TwoSat : public SCC {
         for (int i = 0; i < n; ++i) {
             if (id[i << 1] == id[i << 1 | 1]) return false;
             values[i] = id[i << 1] < id[i << 1 | 1];
-            cout << id[i << 1] << ' ' << id[i << 1 | 1] << endl;
         }
         return true;
     }
