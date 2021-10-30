@@ -1,8 +1,6 @@
 // M1321 - Going from u to v or from v to u?  
 
-#include <bits/stdc++.h>
-using namespace std;
-
+#include "../src/general.hpp"
 #include "../src/tarjan.hpp"
 
 void solve() {
@@ -14,9 +12,10 @@ void solve() {
         u--; v--;
         gr[u].push_back(v);
     }
-    auto t = SCC(n, gr);
-    auto id = SCC(n, gr).id;
-    int cid = ranges::max(id) + 1;
+    SCC scc(n, gr);
+    scc.run();
+    auto id = scc.id;
+    auto cid = scc.cid;
     vector<vector<int>> gr2(cid);
     vector<int> in(cid, 0);
     for (int u = 0; u < n; ++u) {
